@@ -7,14 +7,12 @@ model = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=
 chat_session = model.start_chat(history=[])
 
 def generate_content(user_input):
-    print()
     response = chat_session.send_message(user_input)
     model_response = response.text
-    print(model_response)
-    print()
     chat_session.history.append({"role": "user", "parts": [user_input]})
     chat_session.history.append({"role": "model", "parts": [model_response]})
+    return model_response
 
 while True:
     uinput = input("You: ") #ADD CALL FROM WEBSITE
-    generate_content(uinput)
+    print(generate_content(uinput))
