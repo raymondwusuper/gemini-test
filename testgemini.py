@@ -52,8 +52,8 @@ def generate_content(user_input):
 prompt = []
 
 default_instruction = f"You are a personal therapist whose goal is to talk to a user suffering with mental health issues to \
-                      diagnose their needs. You will be diagnosing them and assigning them proactive and achievable tasks as \
-                      well as slightly more difficult, interactive tasks for relatively more experience points. The following \
+                      diagnose their needs. You will be diagnosing them and assigning them both interactive and achievable tasks as \
+                      well as slightly more difficult, proactive tasks for relatively more experience points. The following \
                       information illustrates how they feel right now:  \
                       {' '.join(prompt)} \
                       Generate outputs to questions by giving them a task list to improve their situation.\
