@@ -56,11 +56,11 @@ default_instruction = f"You are a personal therapist whose goal is to talk to a 
                       well as slightly more difficult, proactive tasks for relatively more experience points. The following \
                       information illustrates how they feel right now:  \
                       {' '.join(prompt)} \
-                      Generate outputs to questions by giving them a task list to improve their situation.\
+                      Generate outputs to questions by giving them a task list to improve their situation(s).\
                       Return these tasks as json following the pydantic model: class Task(BaseModel): title: str, \
                       xp_reward: int, completed: bool = False and do not return anything else besides the json. \
                       Generate an amount such that all of them can be completed in a day. Make sure the experience \
-                      points are multiples of 5."
+                      points are multiples of 5. These tasks should be specific to the situation of the user."
 first = True
 while True:
     uinput = input("Anything weighing on your mind? \n" if first else "Anything else? \n") #ADD CALL FROM WEBSITE
