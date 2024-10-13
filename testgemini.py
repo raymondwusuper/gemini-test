@@ -58,9 +58,10 @@ default_instruction = f"You are a therapist, helping people who are dealing with
                               Return these tasks as json following the pydantic model: class Task(BaseModel): title: str, \
                               xp_reward: int, completed: bool = False and do not return anything else besides the json. \
                               Do not overwhelm the user."
-
+first = True
 while True:
-    uinput = input("You: ") #ADD CALL FROM WEBSITE
+    uinput = input("Anything weighing on your mind? \n" if first else "Anything else? \n") #ADD CALL FROM WEBSITE
+    first = False
     if uinput == "stop": break
     prompt.append(uinput)
 
