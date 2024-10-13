@@ -24,7 +24,7 @@ prompt = []
 
 while True:
     uinput = input("You: ") #ADD CALL FROM WEBSITE
-    if uinput == "I'm finished.": break
+    if uinput == "stop": break
     prompt.append(uinput)
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash", 
