@@ -5,7 +5,6 @@ load_dotenv()
 
 genai.configure(api_key="AIzaSyBTE2Oh74mhQcYR0KZPnn-7VsEqEmXFCwQ")
 
-defaultSysInstructions= r"You are a personal therapist whose goal is to talk to a user suffering with mental health issues to diagnose their needs You will be diagnosing them after an intial conversation in which they respond to certain questions. Make sure not to overwhelm the user."
 default_safety_settings = [
   {
     "category": "HARM_CATEGORY_HARASSMENT",
@@ -52,12 +51,16 @@ def generate_content(user_input):
 
 prompt = []
 
-default_instruction = f"You are a therapist, helping people who are dealing with the following:  \
-                              {' '.join(prompt)} \
-                              Generate outputs to questions by giving them a task list to improve their situation.\
-                              Return these tasks as json following the pydantic model: class Task(BaseModel): title: str, \
-                              xp_reward: int, completed: bool = False and do not return anything else besides the json. \
-                              Do not overwhelm the user."
+default_instruction = f"You are a personal therapist whose goal is to talk to a user suffering with mental health issues to \
+                      diagnose their needs. You will be diagnosing them and assigning them proactive and achievable tasks as \
+                      well as slightly more difficult, interactive tasks for relatively more experience points. The following \
+                      information illustrates how they feel right now:  \
+                      {' '.join(prompt)} \
+                      Generate outputs to questions by giving them a task list to improve their situation.\
+                      Return these tasks as json following the pydantic model: class Task(BaseModel): title: str, \
+                      xp_reward: int, completed: bool = False and do not return anything else besides the json. \
+                      Generate an amount such that all of them can be completed in a day. Make sure the experience \
+                      points are multiples of 5."
 first = True
 while True:
     uinput = input("Anything weighing on your mind? \n" if first else "Anything else? \n") #ADD CALL FROM WEBSITE
@@ -70,5 +73,4 @@ model = genai.GenerativeModel(model_name="gemini-1.5-flash",
                               generation_config=default_config,
                               system_instruction=default_instruction)
 chat_session = model.start_chat(history=[])
-print(prompt)
 print(generate_content(uinput))
