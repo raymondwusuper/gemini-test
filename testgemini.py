@@ -56,7 +56,8 @@ default_instruction = f"You are a therapist, helping people who are dealing with
                               {' '.join(prompt)} \
                               Generate outputs to questions by giving them a task list to improve their situation.\
                               Return these tasks as json following the pydantic model: class Task(BaseModel): title: str, \
-                              xp_reward: int, completed: bool = False and do not return anything else besides the json."
+                              xp_reward: int, completed: bool = False and do not return anything else besides the json. \
+                              Do not overwhelm the user."
 
 while True:
     uinput = input("You: ") #ADD CALL FROM WEBSITE
